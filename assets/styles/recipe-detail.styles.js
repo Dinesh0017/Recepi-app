@@ -8,22 +8,17 @@ export const recipeDetailStyles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.background,
   },
-
   headerContainer: {
     height: height * 0.5,
     position: "relative",
   },
-
   imageContainer: {
     ...StyleSheet.absoluteFillObject,
   },
-
   headerImage: {
     width: "100%",
     height: "120%",
-    resizeMode: "cover",
   },
-
   gradientOverlay: {
     position: "absolute",
     bottom: 0,
@@ -31,7 +26,6 @@ export const recipeDetailStyles = StyleSheet.create({
     right: 0,
     height: "60%",
   },
-
   floatingButtons: {
     position: "absolute",
     top: 50,
@@ -40,7 +34,6 @@ export const recipeDetailStyles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
   },
-
   floatingButton: {
     width: 44,
     height: 44,
@@ -48,24 +41,22 @@ export const recipeDetailStyles = StyleSheet.create({
     backgroundColor: "rgba(0, 0, 0, 0.3)",
     justifyContent: "center",
     alignItems: "center",
+    backdropFilter: "blur(10px)",
   },
-
   titleSection: {
     position: "absolute",
     bottom: 30,
     left: 16,
     right: 16,
   },
-
   categoryBadge: {
     alignSelf: "flex-start",
     backgroundColor: COLORS.primary,
-    paddingHorizontal: 14,
+    paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 20,
     marginBottom: 12,
   },
-
   categoryText: {
     color: COLORS.white,
     fontSize: 12,
@@ -73,24 +64,21 @@ export const recipeDetailStyles = StyleSheet.create({
     textTransform: "uppercase",
     letterSpacing: 1,
   },
-
   recipeTitle: {
     fontSize: 32,
-    fontWeight: "800",
+    fontWeight: "bold",
     color: COLORS.white,
     marginBottom: 8,
     textShadowColor: "rgba(0, 0, 0, 0.75)",
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 3,
   },
-
   locationRow: {
     flexDirection: "row",
     alignItems: "center",
     gap: 6,
     marginBottom: 10,
   },
-
   locationText: {
     color: COLORS.white,
     fontSize: 16,
@@ -99,23 +87,20 @@ export const recipeDetailStyles = StyleSheet.create({
     textShadowOffset: { width: 1, height: 1 },
     textShadowRadius: 2,
   },
-
   contentSection: {
     backgroundColor: COLORS.background,
-    borderTopLeftRadius: 32,
-    borderTopRightRadius: 32,
-    marginTop: -28,
-    paddingTop: 32,
-    paddingHorizontal: 20,
-    paddingBottom: 48,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    marginTop: -30,
+    paddingTop: 30,
+    paddingHorizontal: 16,
+    paddingBottom: 40,
   },
-
   statsContainer: {
     flexDirection: "row",
-    gap: 16,
-    marginBottom: 36,
+    gap: 12,
+    marginBottom: 32,
   },
-
   statCard: {
     flex: 1,
     backgroundColor: COLORS.card,
@@ -124,11 +109,10 @@ export const recipeDetailStyles = StyleSheet.create({
     alignItems: "center",
     shadowColor: COLORS.shadow,
     shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.08,
-    shadowRadius: 6,
-    elevation: 3,
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 4,
   },
-
   statIconContainer: {
     width: 40,
     height: 40,
@@ -136,63 +120,53 @@ export const recipeDetailStyles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 12,
-    backgroundColor: COLORS.primary + "10",
   },
-
   statValue: {
     fontSize: 18,
-    fontWeight: "700",
+    fontWeight: "bold",
     color: COLORS.text,
     marginBottom: 4,
   },
-
   statLabel: {
     fontSize: 12,
     color: COLORS.textLight,
     textAlign: "center",
     fontWeight: "500",
   },
-
   sectionContainer: {
     marginBottom: 32,
   },
-
   sectionTitleRow: {
     flexDirection: "row",
     alignItems: "center",
     gap: 12,
+    flex: 1,
     marginBottom: 16,
   },
-
   sectionIcon: {
     width: 32,
     height: 32,
     borderRadius: 16,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: COLORS.primary + "15",
   },
-
   sectionTitle: {
     fontSize: 22,
-    fontWeight: "800",
+    fontWeight: "bold",
     color: COLORS.text,
     flex: 1,
   },
-
   countBadge: {
     backgroundColor: COLORS.primary + "20",
     paddingHorizontal: 10,
     paddingVertical: 4,
     borderRadius: 12,
   },
-
   countText: {
     color: COLORS.primary,
     fontSize: 12,
     fontWeight: "600",
   },
-
   videoCard: {
     height: 220,
     borderRadius: 20,
@@ -200,33 +174,29 @@ export const recipeDetailStyles = StyleSheet.create({
     backgroundColor: COLORS.card,
     shadowColor: COLORS.shadow,
     shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.08,
-    shadowRadius: 6,
-    elevation: 3,
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 4,
   },
-
   webview: {
     flex: 1,
   },
-
   ingredientsGrid: {
-    gap: 16,
+    gap: 12,
   },
-
   ingredientCard: {
     flexDirection: "row",
     alignItems: "center",
     backgroundColor: COLORS.card,
     padding: 16,
-    borderRadius: 18,
+    borderRadius: 16,
     shadowColor: COLORS.shadow,
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.05,
     shadowRadius: 4,
     elevation: 2,
-    gap: 14,
+    gap: 12,
   },
-
   ingredientNumber: {
     width: 28,
     height: 28,
@@ -235,79 +205,66 @@ export const recipeDetailStyles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-
   ingredientNumberText: {
     color: COLORS.primary,
     fontSize: 12,
-    fontWeight: "700",
+    fontWeight: "bold",
   },
-
   ingredientText: {
     flex: 1,
     fontSize: 16,
     color: COLORS.text,
     lineHeight: 22,
   },
-
   ingredientCheck: {
     opacity: 0.5,
   },
-
   instructionsContainer: {
-    gap: 20,
+    gap: 16,
   },
-
   instructionCard: {
     flexDirection: "row",
     backgroundColor: COLORS.card,
     borderRadius: 20,
     padding: 20,
-    gap: 16,
     shadowColor: COLORS.shadow,
     shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.08,
-    shadowRadius: 6,
-    elevation: 3,
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 4,
+    gap: 16,
   },
-
   stepIndicator: {
     width: 40,
     height: 40,
     borderRadius: 20,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: COLORS.primary,
   },
-
   stepNumber: {
     color: COLORS.white,
     fontSize: 16,
-    fontWeight: "700",
+    fontWeight: "bold",
   },
-
   instructionContent: {
     flex: 1,
   },
-
   instructionText: {
     fontSize: 16,
     color: COLORS.text,
     lineHeight: 24,
     marginBottom: 12,
   },
-
   instructionFooter: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
   },
-
   stepLabel: {
     fontSize: 12,
     color: COLORS.textLight,
     fontWeight: "500",
   },
-
   completeButton: {
     width: 24,
     height: 24,
@@ -318,7 +275,7 @@ export const recipeDetailStyles = StyleSheet.create({
   },
 
   primaryButton: {
-    borderRadius: 18,
+    borderRadius: 16,
     overflow: "hidden",
     shadowColor: COLORS.shadow,
     shadowOffset: { width: 0, height: 4 },
@@ -326,7 +283,6 @@ export const recipeDetailStyles = StyleSheet.create({
     shadowRadius: 8,
     elevation: 4,
   },
-
   buttonGradient: {
     flexDirection: "row",
     alignItems: "center",
@@ -334,14 +290,11 @@ export const recipeDetailStyles = StyleSheet.create({
     paddingVertical: 16,
     gap: 10,
   },
-
   buttonText: {
     color: COLORS.white,
     fontSize: 16,
-    fontWeight: "700",
-    letterSpacing: 0.5,
+    fontWeight: "bold",
   },
-
   secondaryButton: {
     flexDirection: "row",
     alignItems: "center",
@@ -353,32 +306,27 @@ export const recipeDetailStyles = StyleSheet.create({
     borderColor: COLORS.primary,
     gap: 10,
   },
-
   secondaryButtonText: {
     color: COLORS.primary,
     fontSize: 16,
-    fontWeight: "700",
+    fontWeight: "bold",
   },
-
   errorContainer: {
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
   },
-
   errorContent: {
     alignItems: "center",
     padding: 32,
   },
-
   errorTitle: {
     fontSize: 28,
-    fontWeight: "800",
+    fontWeight: "bold",
     color: COLORS.white,
     marginTop: 20,
     marginBottom: 12,
   },
-
   errorDescription: {
     fontSize: 16,
     color: COLORS.white,
@@ -387,17 +335,15 @@ export const recipeDetailStyles = StyleSheet.create({
     marginBottom: 32,
     opacity: 0.9,
   },
-
   errorButton: {
     backgroundColor: COLORS.white,
     paddingHorizontal: 32,
     paddingVertical: 16,
     borderRadius: 25,
   },
-
   errorButtonText: {
     color: COLORS.primary,
     fontSize: 16,
-    fontWeight: "700",
+    fontWeight: "bold",
   },
 });
