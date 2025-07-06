@@ -112,7 +112,7 @@ const RecipeDetailScreen = () => {
         <View style={recipeDetailStyles.headerContainer}>
           <View style={recipeDetailStyles.imageContainer}>
             <Image
-              source={{ uri: recipe.image }}
+              source={{ uri: recipe.image }}//
               style={recipeDetailStyles.headerImage}
               contentFit="cover"
             />
@@ -238,7 +238,7 @@ const RecipeDetailScreen = () => {
                     <Ionicons
                       name="checkmark-circle-outline"
                       size={20}
-                      color={theme.textLight}
+                      color={theme.textLight}//
                     />
                   </View>
                 </View>
