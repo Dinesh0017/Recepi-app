@@ -11,12 +11,10 @@ import { useRouter } from "expo-router";
 import { MealAPI } from "@/services/mealAPI";
 import { homeStyles } from "../../assets/styles/home.styles";
 import { Image } from "expo-image";
-
 import { Ionicons } from "@expo/vector-icons";
 import CategoryFilter from "../../components/CategoryFilter";
 import RecipeCard from "../../components/RecipeCard";
 import LoadingSpinner from "../../components/LoadingSpinner";
-
 import { useTheme } from "../../context/ThemeContext";
 import { THEMES } from "../../constants/colors";
 
@@ -115,34 +113,60 @@ const HomeScreen = () => {
         contentContainerStyle={styles.scrollContent}
       >
         {/* THEME SWITCHER */}
-        <View style={{ paddingHorizontal: 16, marginTop: 10 }}>
+        <View
+          style={{ paddingHorizontal: 16, marginTop: 16, paddingBottom: 10 }}
+        >
+          {/* Main Theme Toggle Button */}
           <TouchableOpacity
             onPress={() => setShowThemes(!showThemes)}
+            activeOpacity={0.9}
             style={{
-              backgroundColor: theme.primary,
+              backgroundColor: theme.card,
               paddingVertical: 12,
               paddingHorizontal: 16,
-              borderRadius: 10,
+              borderRadius: 12,
               flexDirection: "row",
               alignItems: "center",
               justifyContent: "space-between",
+              elevation: 2,
+              shadowColor: "#000",
+              shadowOffset: { width: 0, height: 1 },
+              shadowOpacity: 0.1,
+              shadowRadius: 3,
             }}
           >
-            <Text
-              style={{ color: theme.white, fontWeight: "bold", fontSize: 16 }}
-            >
-              Theme: {currentThemeName}
-            </Text>
-            <Ionicons
-              name={showThemes ? "chevron-up" : "chevron-down"}
-              size={20}
-              color={theme.white}
+            <View style={{ flexDirection: "row", alignItems: "center" }}>
+              <Ionicons name="color-palette" size={20} color={theme.text} />
+              <Text
+                style={{
+                  color: theme.text,
+                  fontSize: 16,
+                  fontWeight: "bold",
+                  marginLeft: 8,
+                }}
+              >
+                Theme: {currentThemeName}
+              </Text>
+            </View>
+
+            {/* Small Circle Preview of Current Theme Color */}
+            <View
+              style={{
+                width: 20,
+                height: 20,
+                borderRadius: 999,
+                backgroundColor: theme.primary,
+                marginLeft: 8,
+              }}
             />
           </TouchableOpacity>
 
+          {/* Horizontal Scrollable Theme List */}
           {showThemes && (
-            <View
-              style={{ flexDirection: "row", flexWrap: "wrap", marginTop: 10 }}
+            <ScrollView
+              horizontal
+              showsHorizontalScrollIndicator={false}
+              style={{ marginTop: 12 }}
             >
               {Object.entries(THEMES).map(([key, t]) => (
                 <TouchableOpacity
@@ -151,27 +175,48 @@ const HomeScreen = () => {
                     changeTheme(key);
                     setShowThemes(false);
                   }}
+                  activeOpacity={0.8}
                   style={{
-                    backgroundColor: t.primary,
-                    padding: 10,
-                    borderRadius: 8,
-                    margin: 5,
-                    width: "47%",
+                    alignItems: "center",
+                    marginRight: 10,
                   }}
                 >
+                  {/* Colored Circle with Icon */}
+                  <View
+                    style={{
+                      width: 50,
+                      height: 50,
+                      borderRadius: 25,
+                      backgroundColor: t.primary,
+                      justifyContent: "center",
+                      alignItems: "center",
+                      borderWidth: key === currentThemeName ? 3 : 1,
+                      borderColor:
+                        key === currentThemeName ? theme.primary : "#ccc",
+                    }}
+                  >
+                    <Ionicons
+                      name="color-palette"
+                      size={24}
+                      color={t.white || "#fff"}
+                    />
+                  </View>
+
+                  {/* Theme Name */}
                   <Text
                     style={{
-                      color: "#fff",
-                      textAlign: "center",
-                      fontWeight: "600",
+                      marginTop: 6,
+                      fontSize: 12,
+                      color: theme.text,
                       textTransform: "capitalize",
+                      fontWeight: key === currentThemeName ? "bold" : "normal",
                     }}
                   >
                     {key}
                   </Text>
                 </TouchableOpacity>
               ))}
-            </View>
+            </ScrollView>
           )}
         </View>
 

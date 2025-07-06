@@ -13,10 +13,8 @@ import { useSignUp } from "@clerk/clerk-expo";
 import { useState } from "react";
 import { Image } from "expo-image";
 import { Ionicons } from "@expo/vector-icons";
-
-import { authStyles } from "../../assets/styles/auth.styles"; // now function(theme)
+import { authStyles } from "../../assets/styles/auth.styles";
 import { useTheme } from "../../context/ThemeContext";
-
 import VerifyEmail from "./verify-email";
 
 const SignUpScreen = () => {
@@ -32,8 +30,10 @@ const SignUpScreen = () => {
   const [pendingVerification, setPendingVerification] = useState(false);
 
   const handleSignUp = async () => {
-    if (!email || !password) return Alert.alert("Error", "Please fill in all fields");
-    if (password.length < 6) return Alert.alert("Error", "Password must be at least 6 characters");
+    if (!email || !password)
+      return Alert.alert("Error", "Please fill in all fields");
+    if (password.length < 6)
+      return Alert.alert("Error", "Password must be at least 6 characters");
 
     if (!isLoaded) return;
 
@@ -46,7 +46,10 @@ const SignUpScreen = () => {
 
       setPendingVerification(true);
     } catch (err) {
-      Alert.alert("Error", err.errors?.[0]?.message || "Failed to create account");
+      Alert.alert(
+        "Error",
+        err.errors?.[0]?.message || "Failed to create account"
+      );
       console.error(JSON.stringify(err, null, 2));
     } finally {
       setLoading(false);
@@ -54,7 +57,9 @@ const SignUpScreen = () => {
   };
 
   if (pendingVerification)
-    return <VerifyEmail email={email} onBack={() => setPendingVerification(false)} />;
+    return (
+      <VerifyEmail email={email} onBack={() => setPendingVerification(false)} />
+    );
 
   return (
     <View style={styles.container}>
@@ -123,11 +128,16 @@ const SignUpScreen = () => {
               </Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.linkContainer} onPress={() => router.back()}>
-              <Text style={styles.linkText}>
-                Already have an account? <Text style={styles.link}>Sign In</Text>
-              </Text>
-            </TouchableOpacity>
+            <Text style={styles.linkText}>
+              Already have an account?
+              <TouchableOpacity
+                style={styles.linkContainer}
+                onPress={() => router.back()}
+              >
+                {" "}
+                <Text style={styles.link}>Sign In</Text>
+              </TouchableOpacity>
+            </Text>
           </View>
         </ScrollView>
       </KeyboardAvoidingView>

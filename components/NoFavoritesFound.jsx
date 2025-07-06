@@ -1,12 +1,11 @@
 import { useRouter } from "expo-router";
 import { View, Text, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-import { useTheme } from "@/context/ThemeContext"; // ✅ Use theme context
-import { favoritesStyles } from "@/assets/styles/favorites.styles"; // This should be a function now
-
+import { useTheme } from "@/context/ThemeContext";
+import { favoritesStyles } from "@/assets/styles/favorites.styles";
 function NoFavoritesFound() {
   const router = useRouter();
-  const { theme } = useTheme(); // ✅ Access the current theme
+  const { theme } = useTheme();
 
   return (
     <View style={favoritesStyles(theme).emptyState}>

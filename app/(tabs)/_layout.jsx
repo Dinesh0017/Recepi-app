@@ -2,11 +2,11 @@ import { useAuth } from "@clerk/clerk-expo";
 import { Redirect, Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
 
-import { useTheme } from "../../context/ThemeContext";  // Import your theme hook
+import { useTheme } from "../../context/ThemeContext";
 
 const TabsLayout = () => {
   const { isSignedIn, isLoaded } = useAuth();
-  const { theme } = useTheme();  // Get current theme colors
+  const { theme } = useTheme();
 
   if (!isLoaded) return null;
 

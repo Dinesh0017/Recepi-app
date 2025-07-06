@@ -2,15 +2,14 @@ import { View, Text, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
-import { useTheme } from "../context/ThemeContext"; // ✅ import theme
-import { recipeCardStyles } from "../assets/styles/home.styles"; // ✅ keep same name
+import { useTheme } from "../context/ThemeContext";
+import { recipeCardStyles } from "../assets/styles/home.styles";
 
 export default function RecipeCard({ recipe }) {
   const router = useRouter();
-  const { theme } = useTheme(); // ✅ use theme
+  const { theme } = useTheme();
 
-  const styles = recipeCardStyles(theme); // ✅ pass theme to style
-
+  const styles = recipeCardStyles(theme);
   return (
     <TouchableOpacity
       style={styles.container}

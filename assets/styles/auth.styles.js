@@ -19,17 +19,19 @@ export const authStyles =(theme) => StyleSheet.create({
     marginBottom: 30,
     justifyContent: "center",
     alignItems: "center",
+    paddingTop: 25,
   },
   image: {
-    width: 320,
-    height: 320,
+    width: 300,
+    height: 300,
   },
   title: {
-    fontSize: 28,
-    fontWeight: "bold",
+    fontSize: 38,
+    fontWeight: "800",
     color: theme.text,
     textAlign: "center",
-    marginBottom: 40,
+    marginBottom: 20,
+    paddingTop: 10,
   },
   subtitle: {
     fontSize: 16,
@@ -83,6 +85,7 @@ export const authStyles =(theme) => StyleSheet.create({
   linkText: {
     fontSize: 16,
     color: theme.textLight,
+    textAlign: "center",
   },
   link: {
     color: theme.primary,

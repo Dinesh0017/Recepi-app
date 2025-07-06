@@ -12,14 +12,13 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
-
 import { Image } from "expo-image";
-
-import { authStyles } from "../../assets/styles/auth.styles"; // now a function
+import { authStyles } from "../../assets/styles/auth.styles";
 import { useTheme } from "../../context/ThemeContext";
 
 const SignInScreen = () => {
   const router = useRouter();
+  
   const { theme } = useTheme();
   const styles = authStyles(theme);
 
@@ -127,14 +126,15 @@ const SignInScreen = () => {
               </Text>
             </TouchableOpacity>
 
-            <TouchableOpacity
-              style={styles.linkContainer}
-              onPress={() => router.push("/(auth)/sign-up")}
-            >
-              <Text style={styles.linkText}>
-                Don&apos;t have an account? <Text style={styles.link}>Sign up</Text>
-              </Text>
-            </TouchableOpacity>
+            <Text style={styles.linkText}>
+              Don&apos;t have an account?
+              <TouchableOpacity
+                style={styles.linkContainer}
+                onPress={() => router.push("/(auth)/sign-up")}
+              >
+                <Text style={styles.link}>Sign up</Text>
+              </TouchableOpacity>
+            </Text>
           </View>
         </ScrollView>
       </KeyboardAvoidingView>

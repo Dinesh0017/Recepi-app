@@ -3,11 +3,9 @@ import { useClerk, useUser } from "@clerk/clerk-expo";
 import { useEffect, useState } from "react";
 import { API_URL } from "../../constants/api";
 import { Ionicons } from "@expo/vector-icons";
-
 import RecipeCard from "../../components/RecipeCard";
 import NoFavoritesFound from "../../components/NoFavoritesFound";
 import LoadingSpinner from "../../components/LoadingSpinner";
-
 import { useTheme } from "../../context/ThemeContext";
 import { favoritesStyles } from "../../assets/styles/favorites.styles";
 

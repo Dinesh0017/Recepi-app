@@ -1,4 +1,3 @@
-// context/ThemeContext.js
 import React, { createContext, useContext, useState } from "react";
 import { THEMES } from "../constants/colors";
 

@@ -6,13 +6,10 @@ import { API_URL } from "../../constants/api";
 import { MealAPI } from "@/services/mealAPI";
 import LoadingSpinner from "../../components/LoadingSpinner";
 import { Image } from "expo-image";
-
 import { createRecipeDetailStyles } from "../../assets/styles/recipe-detail.styles";
 import { LinearGradient } from "expo-linear-gradient";
-
 import { Ionicons } from "@expo/vector-icons";
 import { WebView } from "react-native-webview";
-
 import { useTheme } from "../../context/ThemeContext";
 
 const RecipeDetailScreen = () => {
