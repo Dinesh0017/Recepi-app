@@ -15,11 +15,13 @@ import { Ionicons } from "@expo/vector-icons";
 
 import { Image } from "expo-image";
 
-import { authStyles } from "../../assets/styles/auth.styles";
-import { COLORS } from "../../constants/colors";
+import { authStyles } from "../../assets/styles/auth.styles"; // now a function
+import { useTheme } from "../../context/ThemeContext";
 
 const SignInScreen = () => {
   const router = useRouter();
+  const { theme } = useTheme();
+  const styles = authStyles(theme);
 
   const { signIn, setActive, isLoaded } = useSignIn();
 
@@ -59,34 +61,32 @@ const SignInScreen = () => {
   };
 
   return (
-    <View style={authStyles.container}>
+    <View style={styles.container}>
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={authStyles.keyboardView}
+        style={styles.keyboardView}
         keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
       >
         <ScrollView
-          contentContainerStyle={authStyles.scrollContent}
+          contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}
         >
-          <View style={authStyles.imageContainer}>
+          <View style={styles.imageContainer}>
             <Image
               source={require("../../assets/images/chefe1.png")}
-              style={authStyles.image}
+              style={styles.image}
               contentFit="contain"
             />
           </View>
 
-          <Text style={authStyles.title}>Welcome Back</Text>
+          <Text style={styles.title}>Welcome Back</Text>
 
-          {/* FORM CONTAINER */}
-          <View style={authStyles.formContainer}>
-            {/* Email Input */}
-            <View style={authStyles.inputContainer}>
+          <View style={styles.formContainer}>
+            <View style={styles.inputContainer}>
               <TextInput
-                style={authStyles.textInput}
+                style={styles.textInput}
                 placeholder="Enter email"
-                placeholderTextColor={COLORS.textLight}
+                placeholderTextColor={theme.textLight}
                 value={email}
                 onChangeText={setEmail}
                 keyboardType="email-address"
@@ -94,45 +94,45 @@ const SignInScreen = () => {
               />
             </View>
 
-            {/* PASSWORD INPUT */}
-            <View style={authStyles.inputContainer}>
+            <View style={styles.inputContainer}>
               <TextInput
-                style={authStyles.textInput}
+                style={styles.textInput}
                 placeholder="Enter password"
-                placeholderTextColor={COLORS.textLight}
+                placeholderTextColor={theme.textLight}
                 value={password}
                 onChangeText={setPassword}
                 secureTextEntry={!showPassword}
                 autoCapitalize="none"
               />
               <TouchableOpacity
-                style={authStyles.eyeButton}
+                style={styles.eyeButton}
                 onPress={() => setShowPassword(!showPassword)}
               >
                 <Ionicons
                   name={showPassword ? "eye-outline" : "eye-off-outline"}
                   size={20}
-                  color={COLORS.textLight}
+                  color={theme.textLight}
                 />
               </TouchableOpacity>
             </View>
 
             <TouchableOpacity
-              style={[authStyles.authButton, loading && authStyles.buttonDisabled]}
+              style={[styles.authButton, loading && styles.buttonDisabled]}
               onPress={handleSignIn}
               disabled={loading}
               activeOpacity={0.8}
             >
-              <Text style={authStyles.buttonText}>{loading ? "Signing In..." : "Sign In"}</Text>
+              <Text style={styles.buttonText}>
+                {loading ? "Signing In..." : "Sign In"}
+              </Text>
             </TouchableOpacity>
 
-            {/* Sign Up Link */}
             <TouchableOpacity
-              style={authStyles.linkContainer}
+              style={styles.linkContainer}
               onPress={() => router.push("/(auth)/sign-up")}
             >
-              <Text style={authStyles.linkText}>
-                Don&apos;t have an account? <Text style={authStyles.link}>Sign up</Text>
+              <Text style={styles.linkText}>
+                Don&apos;t have an account? <Text style={styles.link}>Sign up</Text>
               </Text>
             </TouchableOpacity>
           </View>
@@ -141,4 +141,5 @@ const SignInScreen = () => {
     </View>
   );
 };
+
 export default SignInScreen;

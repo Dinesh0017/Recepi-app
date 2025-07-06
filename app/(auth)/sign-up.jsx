@@ -11,15 +11,19 @@ import {
 import { useRouter } from "expo-router";
 import { useSignUp } from "@clerk/clerk-expo";
 import { useState } from "react";
-import { authStyles } from "../../assets/styles/auth.styles";
 import { Image } from "expo-image";
-import { COLORS } from "../../constants/colors";
-
 import { Ionicons } from "@expo/vector-icons";
+
+import { authStyles } from "../../assets/styles/auth.styles"; // now function(theme)
+import { useTheme } from "../../context/ThemeContext";
+
 import VerifyEmail from "./verify-email";
 
 const SignUpScreen = () => {
   const router = useRouter();
+  const { theme } = useTheme();
+  const styles = authStyles(theme);
+
   const { isLoaded, signUp } = useSignUp();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -53,34 +57,32 @@ const SignUpScreen = () => {
     return <VerifyEmail email={email} onBack={() => setPendingVerification(false)} />;
 
   return (
-    <View style={authStyles.container}>
+    <View style={styles.container}>
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
-        style={authStyles.keyboardView}
+        style={styles.keyboardView}
       >
         <ScrollView
-          contentContainerStyle={authStyles.scrollContent}
+          contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}
         >
-          {/* Image Container */}
-          <View style={authStyles.imageContainer}>
+          <View style={styles.imageContainer}>
             <Image
               source={require("../../assets/images/chefe2.png")}
-              style={authStyles.image}
+              style={styles.image}
               contentFit="contain"
             />
           </View>
 
-          <Text style={authStyles.title}>Create Account</Text>
+          <Text style={styles.title}>Create Account</Text>
 
-          <View style={authStyles.formContainer}>
-            {/* Email Input */}
-            <View style={authStyles.inputContainer}>
+          <View style={styles.formContainer}>
+            <View style={styles.inputContainer}>
               <TextInput
-                style={authStyles.textInput}
+                style={styles.textInput}
                 placeholder="Enter email"
-                placeholderTextColor={COLORS.textLight}
+                placeholderTextColor={theme.textLight}
                 value={email}
                 onChangeText={setEmail}
                 keyboardType="email-address"
@@ -88,45 +90,42 @@ const SignUpScreen = () => {
               />
             </View>
 
-            {/* Password Input */}
-            <View style={authStyles.inputContainer}>
+            <View style={styles.inputContainer}>
               <TextInput
-                style={authStyles.textInput}
+                style={styles.textInput}
                 placeholder="Enter password"
-                placeholderTextColor={COLORS.textLight}
+                placeholderTextColor={theme.textLight}
                 value={password}
                 onChangeText={setPassword}
                 secureTextEntry={!showPassword}
                 autoCapitalize="none"
               />
               <TouchableOpacity
-                style={authStyles.eyeButton}
+                style={styles.eyeButton}
                 onPress={() => setShowPassword(!showPassword)}
               >
                 <Ionicons
                   name={showPassword ? "eye-outline" : "eye-off-outline"}
                   size={20}
-                  color={COLORS.textLight}
+                  color={theme.textLight}
                 />
               </TouchableOpacity>
             </View>
 
-            {/* Sign Up Button */}
             <TouchableOpacity
-              style={[authStyles.authButton, loading && authStyles.buttonDisabled]}
+              style={[styles.authButton, loading && styles.buttonDisabled]}
               onPress={handleSignUp}
               disabled={loading}
               activeOpacity={0.8}
             >
-              <Text style={authStyles.buttonText}>
+              <Text style={styles.buttonText}>
                 {loading ? "Creating Account..." : "Sign Up"}
               </Text>
             </TouchableOpacity>
 
-            {/* Sign In Link */}
-            <TouchableOpacity style={authStyles.linkContainer} onPress={() => router.back()}>
-              <Text style={authStyles.linkText}>
-                Already have an account? <Text style={authStyles.link}>Sign In</Text>
+            <TouchableOpacity style={styles.linkContainer} onPress={() => router.back()}>
+              <Text style={styles.linkText}>
+                Already have an account? <Text style={styles.link}>Sign In</Text>
               </Text>
             </TouchableOpacity>
           </View>

@@ -1,10 +1,10 @@
 import { StyleSheet } from "react-native";
 import { COLORS } from "../../constants/colors";
 
-export const searchStyles = StyleSheet.create({
+export const searchStyles =(theme)=> StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.background,
+    backgroundColor: theme.background,
   },
   searchSection: {
     paddingHorizontal: 16,
@@ -13,13 +13,13 @@ export const searchStyles = StyleSheet.create({
   searchContainer: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: COLORS.card,
+    backgroundColor: theme.card,
     borderRadius: 16,
     paddingHorizontal: 16,
     paddingVertical: 12,
     borderWidth: 1,
-    borderColor: COLORS.border,
-    shadowColor: COLORS.shadow,
+    borderColor: theme.border,
+    shadowColor: theme.shadow,
     shadowOffset: {
       width: 0,
       height: 2,
@@ -34,7 +34,7 @@ export const searchStyles = StyleSheet.create({
   searchInput: {
     flex: 1,
     fontSize: 16,
-    color: COLORS.text,
+    color: theme.text,
   },
   clearButton: {
     padding: 4,
@@ -45,7 +45,7 @@ export const searchStyles = StyleSheet.create({
   filterLabel: {
     fontSize: 16,
     fontWeight: "600",
-    color: COLORS.text,
+    color: theme.text,
     marginBottom: 12,
   },
   filterButtons: {
@@ -53,24 +53,24 @@ export const searchStyles = StyleSheet.create({
     gap: 12,
   },
   quickFilterButton: {
-    backgroundColor: COLORS.card,
+    backgroundColor: theme.card,
     paddingHorizontal: 16,
     paddingVertical: 8,
     borderRadius: 20,
     borderWidth: 1,
-    borderColor: COLORS.border,
+    borderColor: theme.border,
   },
   activeQuickFilter: {
-    backgroundColor: COLORS.primary,
-    borderColor: COLORS.primary,
+    backgroundColor: theme.primary,
+    borderColor: theme.primary,
   },
   quickFilterText: {
     fontSize: 14,
     fontWeight: "500",
-    color: COLORS.text,
+    color: theme.text,
   },
   activeQuickFilterText: {
-    color: COLORS.white,
+    color: theme.white,
   },
   resultsSection: {
     flex: 1,
@@ -87,12 +87,12 @@ export const searchStyles = StyleSheet.create({
   resultsTitle: {
     fontSize: 18,
     fontWeight: "bold",
-    color: COLORS.text,
+    color: theme.text,
     flex: 1,
   },
   resultsCount: {
     fontSize: 14,
-    color: COLORS.textLight,
+    color: theme.textLight,
     fontWeight: "500",
   },
   loadingContainer: {
@@ -116,13 +116,13 @@ export const searchStyles = StyleSheet.create({
   emptyTitle: {
     fontSize: 20,
     fontWeight: "bold",
-    color: COLORS.text,
+    color: theme.text,
     marginTop: 16,
     marginBottom: 8,
   },
   emptyDescription: {
     fontSize: 14,
-    color: COLORS.textLight,
+    color: theme.textLight,
     textAlign: "center",
     lineHeight: 20,
   },

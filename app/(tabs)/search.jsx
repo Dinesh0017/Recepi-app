@@ -2,13 +2,18 @@ import { useEffect, useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, FlatList } from "react-native";
 import { MealAPI } from "../../services/mealAPI";
 import { useDebounce } from "../../hooks/useDebounce";
-import { searchStyles } from "../../assets/styles/search.styles";
-import { COLORS } from "../../constants/colors";
 import { Ionicons } from "@expo/vector-icons";
+
 import RecipeCard from "../../components/RecipeCard";
 import LoadingSpinner from "../../components/LoadingSpinner";
 
+import { useTheme } from "../../context/ThemeContext";
+import { searchStyles } from "../../assets/styles/search.styles";
+
 const SearchScreen = () => {
+  const { theme } = useTheme();
+  const styles = searchStyles(theme);
+
   const [searchQuery, setSearchQuery] = useState("");
   const [recipes, setRecipes] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -17,15 +22,12 @@ const SearchScreen = () => {
   const debouncedSearchQuery = useDebounce(searchQuery, 300);
 
   const performSearch = async (query) => {
-    // if no search query
     if (!query.trim()) {
       const randomMeals = await MealAPI.getRandomMeals(12);
       return randomMeals
         .map((meal) => MealAPI.transformMealData(meal))
         .filter((meal) => meal !== null);
     }
-
-    // search by name first, then by ingredient if no results
 
     const nameResults = await MealAPI.searchMealsByName(query);
     let results = nameResults;
@@ -79,41 +81,41 @@ const SearchScreen = () => {
   if (initialLoading) return <LoadingSpinner message="Loading recipes..." />;
 
   return (
-    <View style={searchStyles.container}>
-      <View style={searchStyles.searchSection}>
-        <View style={searchStyles.searchContainer}>
+    <View style={styles.container}>
+      <View style={styles.searchSection}>
+        <View style={styles.searchContainer}>
           <Ionicons
             name="search"
             size={20}
-            color={COLORS.textLight}
-            style={searchStyles.searchIcon}
+            color={theme.textLight}
+            style={styles.searchIcon}
           />
           <TextInput
-            style={searchStyles.searchInput}
+            style={styles.searchInput}
             placeholder="Search recipes, ingredients..."
-            placeholderTextColor={COLORS.textLight}
+            placeholderTextColor={theme.textLight}
             value={searchQuery}
             onChangeText={setSearchQuery}
             returnKeyType="search"
           />
           {searchQuery.length > 0 && (
-            <TouchableOpacity onPress={() => setSearchQuery("")} style={searchStyles.clearButton}>
-              <Ionicons name="close-circle" size={20} color={COLORS.textLight} />
+            <TouchableOpacity onPress={() => setSearchQuery("")} style={styles.clearButton}>
+              <Ionicons name="close-circle" size={20} color={theme.textLight} />
             </TouchableOpacity>
           )}
         </View>
       </View>
 
-      <View style={searchStyles.resultsSection}>
-        <View style={searchStyles.resultsHeader}>
-          <Text style={searchStyles.resultsTitle}>
+      <View style={styles.resultsSection}>
+        <View style={styles.resultsHeader}>
+          <Text style={styles.resultsTitle}>
             {searchQuery ? `Results for "${searchQuery}"` : "Popular Recipes"}
           </Text>
-          <Text style={searchStyles.resultsCount}>{recipes.length} found</Text>
+          <Text style={styles.resultsCount}>{recipes.length} found</Text>
         </View>
 
         {loading ? (
-          <View style={searchStyles.loadingContainer}>
+          <View style={styles.loadingContainer}>
             <LoadingSpinner message="Searching recipes..." size="small" />
           </View>
         ) : (
@@ -122,24 +124,25 @@ const SearchScreen = () => {
             renderItem={({ item }) => <RecipeCard recipe={item} />}
             keyExtractor={(item) => item.id.toString()}
             numColumns={2}
-            columnWrapperStyle={searchStyles.row}
-            contentContainerStyle={searchStyles.recipesGrid}
+            columnWrapperStyle={styles.row}
+            contentContainerStyle={styles.recipesGrid}
             showsVerticalScrollIndicator={false}
-            ListEmptyComponent={<NoResultsFound />}
+            ListEmptyComponent={<NoResultsFound theme={theme} />}
           />
         )}
       </View>
     </View>
   );
 };
+
 export default SearchScreen;
 
-function NoResultsFound() {
+function NoResultsFound({ theme }) {
   return (
-    <View style={searchStyles.emptyState}>
-      <Ionicons name="search-outline" size={64} color={COLORS.textLight} />
-      <Text style={searchStyles.emptyTitle}>No recipes found</Text>
-      <Text style={searchStyles.emptyDescription}>
+    <View style={searchStyles(theme).emptyState}>
+      <Ionicons name="search-outline" size={64} color={theme.textLight} />
+      <Text style={searchStyles(theme).emptyTitle}>No recipes found</Text>
+      <Text style={searchStyles(theme).emptyDescription}>
         Try adjusting your search or try different keywords
       </Text>
     </View>

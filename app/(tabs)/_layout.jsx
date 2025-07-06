@@ -1,10 +1,12 @@
 import { useAuth } from "@clerk/clerk-expo";
 import { Redirect, Tabs } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
-import { COLORS } from "../../constants/colors";
+
+import { useTheme } from "../../context/ThemeContext";  // Import your theme hook
 
 const TabsLayout = () => {
   const { isSignedIn, isLoaded } = useAuth();
+  const { theme } = useTheme();  // Get current theme colors
 
   if (!isLoaded) return null;
 
@@ -14,11 +16,11 @@ const TabsLayout = () => {
     <Tabs
       screenOptions={{
         headerShown: false,
-        tabBarActiveTintColor: COLORS.primary,
-        tabBarInactiveTintColor: COLORS.textLight,
+        tabBarActiveTintColor: theme.primary,
+        tabBarInactiveTintColor: theme.textLight,
         tabBarStyle: {
-          backgroundColor: COLORS.white,
-          borderTopColor: COLORS.border,
+          backgroundColor: theme.white,
+          borderTopColor: theme.border,
           borderTopWidth: 1,
           paddingBottom: 8,
           paddingTop: 8,
@@ -54,4 +56,5 @@ const TabsLayout = () => {
     </Tabs>
   );
 };
+
 export default TabsLayout;

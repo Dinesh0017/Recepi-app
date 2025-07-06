@@ -10,10 +10,15 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
-import { authStyles } from "../../assets/styles/auth.styles";
 import { Image } from "expo-image";
-import { COLORS } from "../../constants/colors";
+
+import { useTheme } from "../../context/ThemeContext";
+import { authStyles } from "../../assets/styles/auth.styles";
+
 const VerifyEmail = ({ email, onBack }) => {
+  const { theme } = useTheme();
+  const styles = authStyles(theme);
+
   const { isLoaded, signUp, setActive } = useSignUp();
   const [code, setCode] = useState("");
   const [loading, setLoading] = useState(false);
@@ -40,36 +45,33 @@ const VerifyEmail = ({ email, onBack }) => {
   };
 
   return (
-    <View style={authStyles.container}>
+    <View style={styles.container}>
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
-        style={authStyles.keyboardView}
+        style={styles.keyboardView}
         keyboardVerticalOffset={Platform.OS === "ios" ? 64 : 0}
       >
         <ScrollView
-          contentContainerStyle={authStyles.scrollContent}
+          contentContainerStyle={styles.scrollContent}
           showsVerticalScrollIndicator={false}
         >
-          {/* Image Container */}
-          <View style={authStyles.imageContainer}>
+          <View style={styles.imageContainer}>
             <Image
               source={require("../../assets/images/i3.png")}
-              style={authStyles.image}
+              style={styles.image}
               contentFit="contain"
             />
           </View>
 
-          {/* Title */}
-          <Text style={authStyles.title}>Verify Your Email</Text>
-          <Text style={authStyles.subtitle}>We&apos;ve sent a verification code to {email}</Text>
+          <Text style={styles.title}>Verify Your Email</Text>
+          <Text style={styles.subtitle}>We&apos;ve sent a verification code to {email}</Text>
 
-          <View style={authStyles.formContainer}>
-            {/* Verification Code Input */}
-            <View style={authStyles.inputContainer}>
+          <View style={styles.formContainer}>
+            <View style={styles.inputContainer}>
               <TextInput
-                style={authStyles.textInput}
+                style={styles.textInput}
                 placeholder="Enter verification code"
-                placeholderTextColor={COLORS.textLight}
+                placeholderTextColor={theme.textLight}
                 value={code}
                 onChangeText={setCode}
                 keyboardType="number-pad"
@@ -77,20 +79,18 @@ const VerifyEmail = ({ email, onBack }) => {
               />
             </View>
 
-            {/* Verify Button */}
             <TouchableOpacity
-              style={[authStyles.authButton, loading && authStyles.buttonDisabled]}
+              style={[styles.authButton, loading && styles.buttonDisabled]}
               onPress={handleVerification}
               disabled={loading}
               activeOpacity={0.8}
             >
-              <Text style={authStyles.buttonText}>{loading ? "Verifying..." : "Verify Email"}</Text>
+              <Text style={styles.buttonText}>{loading ? "Verifying..." : "Verify Email"}</Text>
             </TouchableOpacity>
 
-            {/* Back to Sign Up */}
-            <TouchableOpacity style={authStyles.linkContainer} onPress={onBack}>
-              <Text style={authStyles.linkText}>
-                <Text style={authStyles.link}>Back to Sign Up</Text>
+            <TouchableOpacity style={styles.linkContainer} onPress={onBack}>
+              <Text style={styles.linkText}>
+                <Text style={styles.link}>Back to Sign Up</Text>
               </Text>
             </TouchableOpacity>
           </View>
@@ -99,4 +99,5 @@ const VerifyEmail = ({ email, onBack }) => {
     </View>
   );
 };
+
 export default VerifyEmail;

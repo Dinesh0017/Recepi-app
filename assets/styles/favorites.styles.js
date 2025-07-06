@@ -1,10 +1,10 @@
 import { StyleSheet } from "react-native";
-import { COLORS } from "../../constants/colors";
 
-export const favoritesStyles = StyleSheet.create({
+
+export const favoritesStyles =(theme)=> StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.background,
+    backgroundColor: theme.background,
   },
   header: {
     flexDirection: "row",
@@ -16,17 +16,17 @@ export const favoritesStyles = StyleSheet.create({
   title: {
     fontSize: 32,
     fontWeight: "800",
-    color: COLORS.text,
+    color: theme.text,
     letterSpacing: -0.5,
   },
   logoutButton: {
     width: 40,
     height: 40,
     borderRadius: 20,
-    backgroundColor: COLORS.card,
+    backgroundColor: theme.card,
     justifyContent: "center",
     alignItems: "center",
-    shadowColor: COLORS.shadow,
+    shadowColor: theme.shadow,
     shadowOffset: {
       width: 0,
       height: 2,
@@ -43,11 +43,11 @@ export const favoritesStyles = StyleSheet.create({
   },
   statCard: {
     flex: 1,
-    backgroundColor: COLORS.card,
+    backgroundColor: theme.card,
     borderRadius: 16,
     padding: 16,
     alignItems: "center",
-    shadowColor: COLORS.shadow,
+    shadowColor: theme.shadow,
     shadowOffset: {
       width: 0,
       height: 2,
@@ -67,7 +67,7 @@ export const favoritesStyles = StyleSheet.create({
   statValue: {
     fontSize: 18,
     fontWeight: "bold",
-    color: COLORS.text,
+    color: theme.text,
   },
   recipesSection: {
     paddingHorizontal: 16,
@@ -89,24 +89,24 @@ export const favoritesStyles = StyleSheet.create({
     width: 120,
     height: 120,
     borderRadius: 60,
-    backgroundColor: COLORS.card,
+    backgroundColor: theme.card,
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 24,
     borderWidth: 2,
-    borderColor: COLORS.border,
+    borderColor: theme.border,
     borderStyle: "dashed",
   },
   emptyTitle: {
     fontSize: 24,
     fontWeight: "bold",
-    color: COLORS.text,
+    color: theme.text,
     marginBottom: 24,
   },
   exploreButton: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: COLORS.primary,
+    backgroundColor: theme.primary,
     paddingHorizontal: 24,
     paddingVertical: 12,
     borderRadius: 24,
@@ -115,6 +115,6 @@ export const favoritesStyles = StyleSheet.create({
   exploreButtonText: {
     fontSize: 16,
     fontWeight: "600",
-    color: COLORS.white,
+    color: theme.white,
   },
 });

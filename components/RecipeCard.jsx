@@ -2,48 +2,51 @@ import { View, Text, TouchableOpacity } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
-import { COLORS } from "../constants/colors";
-import { recipeCardStyles } from "../assets/styles/home.styles";
+import { useTheme } from "../context/ThemeContext"; // ✅ import theme
+import { recipeCardStyles } from "../assets/styles/home.styles"; // ✅ keep same name
 
 export default function RecipeCard({ recipe }) {
   const router = useRouter();
+  const { theme } = useTheme(); // ✅ use theme
+
+  const styles = recipeCardStyles(theme); // ✅ pass theme to style
 
   return (
     <TouchableOpacity
-      style={recipeCardStyles.container}
+      style={styles.container}
       onPress={() => router.push(`/recipe/${recipe.id}`)}
       activeOpacity={0.8}
     >
-      <View style={recipeCardStyles.imageContainer}>
+      <View style={styles.imageContainer}>
         <Image
           source={{ uri: recipe.image }}
-          style={recipeCardStyles.image}
+          style={styles.image}
           contentFit="cover"
           transition={300}
         />
       </View>
 
-      <View style={recipeCardStyles.content}>
-        <Text style={recipeCardStyles.title} numberOfLines={2}>
+      <View style={styles.content}>
+        <Text style={styles.title} numberOfLines={2}>
           {recipe.title}
         </Text>
         {recipe.description && (
-          <Text style={recipeCardStyles.description} numberOfLines={2}>
+          <Text style={styles.description} numberOfLines={2}>
             {recipe.description}
           </Text>
         )}
 
-        <View style={recipeCardStyles.footer}>
+        <View style={styles.footer}>
           {recipe.cookTime && (
-            <View style={recipeCardStyles.timeContainer}>
-              <Ionicons name="time-outline" size={14} color={COLORS.textLight} />
-              <Text style={recipeCardStyles.timeText}>{recipe.cookTime}</Text>
+            <View style={styles.timeContainer}>
+              <Ionicons name="time-outline" size={14} color={theme.textLight} />
+              <Text style={styles.timeText}>{recipe.cookTime}</Text>
             </View>
           )}
           {recipe.servings && (
-            <View style={recipeCardStyles.servingsContainer}>
-              <Ionicons name="people-outline" size={14} color={COLORS.textLight} />
-              <Text style={recipeCardStyles.servingsText}>{recipe.servings}</Text>
+            <View style={styles.servingsContainer}>
+              <Ionicons name="people-outline" size={14} color={theme.textLight} />
+              <Text style={styles.servingsText}>{recipe.servings}</Text>
             </View>
           )}
         </View>

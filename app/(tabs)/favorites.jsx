@@ -2,16 +2,21 @@ import { View, Text, Alert, ScrollView, TouchableOpacity, FlatList } from "react
 import { useClerk, useUser } from "@clerk/clerk-expo";
 import { useEffect, useState } from "react";
 import { API_URL } from "../../constants/api";
-import { favoritesStyles } from "../../assets/styles/favorites.styles";
-import { COLORS } from "../../constants/colors";
 import { Ionicons } from "@expo/vector-icons";
+
 import RecipeCard from "../../components/RecipeCard";
 import NoFavoritesFound from "../../components/NoFavoritesFound";
 import LoadingSpinner from "../../components/LoadingSpinner";
 
+import { useTheme } from "../../context/ThemeContext";
+import { favoritesStyles } from "../../assets/styles/favorites.styles";
+
 const FavoritesScreen = () => {
   const { signOut } = useClerk();
   const { user } = useUser();
+  const { theme } = useTheme();
+  const styles = favoritesStyles(theme);
+
   const [favoriteRecipes, setFavoriteRecipes] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -23,7 +28,6 @@ const FavoritesScreen = () => {
 
         const favorites = await response.json();
 
-        // transform the data to match the RecipeCard component's expected format
         const transformedFavorites = favorites.map((favorite) => ({
           ...favorite,
           id: favorite.recipeId,
@@ -51,23 +55,23 @@ const FavoritesScreen = () => {
   if (loading) return <LoadingSpinner message="Loading your favorites..." />;
 
   return (
-    <View style={favoritesStyles.container}>
+    <View style={styles.container}>
       <ScrollView showsVerticalScrollIndicator={false}>
-        <View style={favoritesStyles.header}>
-          <Text style={favoritesStyles.title}>Favorites</Text>
-          <TouchableOpacity style={favoritesStyles.logoutButton} onPress={handleSignOut}>
-            <Ionicons name="log-out-outline" size={22} color={COLORS.text} />
+        <View style={styles.header}>
+          <Text style={[styles.title, { color: theme.text }]}>Favorites</Text>
+          <TouchableOpacity style={styles.logoutButton} onPress={handleSignOut}>
+            <Ionicons name="log-out-outline" size={22} color={theme.text} />
           </TouchableOpacity>
         </View>
 
-        <View style={favoritesStyles.recipesSection}>
+        <View style={styles.recipesSection}>
           <FlatList
             data={favoriteRecipes}
             renderItem={({ item }) => <RecipeCard recipe={item} />}
             keyExtractor={(item) => item.id.toString()}
             numColumns={2}
-            columnWrapperStyle={favoritesStyles.row}
-            contentContainerStyle={favoritesStyles.recipesGrid}
+            columnWrapperStyle={styles.row}
+            contentContainerStyle={styles.recipesGrid}
             scrollEnabled={false}
             ListEmptyComponent={<NoFavoritesFound />}
           />
@@ -76,4 +80,5 @@ const FavoritesScreen = () => {
     </View>
   );
 };
+
 export default FavoritesScreen;

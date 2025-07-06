@@ -1,13 +1,14 @@
 import { StyleSheet, Dimensions } from "react-native";
-import { COLORS } from "../../constants/colors";
+
+
 
 const { width } = Dimensions.get("window");
 const cardWidth = (width - 48) / 2;
 
-export const homeStyles = StyleSheet.create({
+export const homeStyles =(theme)=> StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: COLORS.background,
+    backgroundColor: theme.background,
   },
   scrollContent: {
     paddingBottom: 32,
@@ -23,7 +24,7 @@ export const homeStyles = StyleSheet.create({
   welcomeText: {
     fontSize: 32,
     fontWeight: "800",
-    color: COLORS.text,
+    color: theme.text,
     letterSpacing: -0.5,
   },
   featuredSection: {
@@ -33,8 +34,8 @@ export const homeStyles = StyleSheet.create({
   featuredCard: {
     borderRadius: 24,
     overflow: "hidden",
-    backgroundColor: COLORS.card,
-    shadowColor: COLORS.shadow,
+    backgroundColor: theme.card,
+    shadowColor: theme.shadow,
     shadowOffset: {
       width: 0,
       height: 12,
@@ -45,7 +46,7 @@ export const homeStyles = StyleSheet.create({
   },
   featuredImageContainer: {
     height: 240,
-    backgroundColor: COLORS.primary,
+    backgroundColor: theme.primary,
     position: "relative",
   },
   featuredImage: {
@@ -59,14 +60,14 @@ export const homeStyles = StyleSheet.create({
     padding: 20,
   },
   featuredBadge: {
-    backgroundColor: COLORS.primary,
+    backgroundColor: theme.primary,
     paddingHorizontal: 12,
     paddingVertical: 6,
     borderRadius: 20,
     alignSelf: "flex-start",
   },
   featuredBadgeText: {
-    color: COLORS.white,
+    color: theme.white,
     fontSize: 12,
     fontWeight: "600",
   },
@@ -76,7 +77,7 @@ export const homeStyles = StyleSheet.create({
   featuredTitle: {
     fontSize: 24,
     fontWeight: "800",
-    color: COLORS.white,
+    color: theme.white,
     marginBottom: 12,
     textShadowColor: "rgba(0,0,0,0.3)",
     textShadowOffset: { width: 0, height: 2 },
@@ -93,7 +94,7 @@ export const homeStyles = StyleSheet.create({
   },
   metaText: {
     fontSize: 14,
-    color: COLORS.white,
+    color: theme.white,
     fontWeight: "600",
   },
   recipesSection: {
@@ -106,7 +107,7 @@ export const homeStyles = StyleSheet.create({
   sectionTitle: {
     fontSize: 22,
     fontWeight: "800",
-    color: COLORS.text,
+    color: theme.text,
     letterSpacing: -0.5,
   },
   recipesGrid: {
@@ -124,13 +125,13 @@ export const homeStyles = StyleSheet.create({
   emptyTitle: {
     fontSize: 20,
     fontWeight: "700",
-    color: COLORS.text,
+    color: theme.text,
     marginTop: 16,
     marginBottom: 8,
   },
   emptyDescription: {
     fontSize: 14,
-    color: COLORS.textLight,
+    color: theme.textLight,
     textAlign: "center",
   },
   categoryFilterContainer: {
@@ -144,14 +145,14 @@ export const homeStyles = StyleSheet.create({
     flexDirection: "column",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: COLORS.card,
+    backgroundColor: theme.card,
     paddingVertical: 12,
     paddingHorizontal: 16,
     borderRadius: 20,
     borderWidth: 1,
-    borderColor: COLORS.border,
+    borderColor: theme.border,
     minWidth: 80,
-    shadowColor: COLORS.shadow,
+    shadowColor: theme.shadow,
     shadowOffset: {
       width: 0,
       height: 2,
@@ -161,8 +162,8 @@ export const homeStyles = StyleSheet.create({
     elevation: 2,
   },
   selectedCategory: {
-    backgroundColor: COLORS.primary,
-    borderColor: COLORS.primary,
+    backgroundColor: theme.primary,
+    borderColor: theme.primary,
     shadowOpacity: 0.15,
   },
   categoryImage: {
@@ -170,30 +171,30 @@ export const homeStyles = StyleSheet.create({
     height: 40,
     borderRadius: 20,
     marginBottom: 4,
-    backgroundColor: COLORS.border,
+    backgroundColor: theme.border,
   },
   selectedCategoryImage: {
     borderWidth: 2,
-    borderColor: COLORS.white,
+    borderColor: theme.white,
   },
   categoryText: {
     fontSize: 12,
     fontWeight: "600",
-    color: COLORS.text,
+    color: theme.text,
     textAlign: "center",
   },
   selectedCategoryText: {
-    color: COLORS.white,
+    color: theme.white,
   },
 });
 
-export const recipeCardStyles = StyleSheet.create({
+export const recipeCardStyles =(theme)=> StyleSheet.create({
   container: {
     width: cardWidth,
-    backgroundColor: COLORS.card,
+    backgroundColor: theme.card,
     borderRadius: 16,
     marginBottom: 16,
-    shadowColor: COLORS.shadow,
+    shadowColor: theme.shadow,
     shadowOffset: {
       width: 0,
       height: 4,
@@ -210,7 +211,7 @@ export const recipeCardStyles = StyleSheet.create({
   image: {
     width: "100%",
     height: "100%",
-    backgroundColor: COLORS.border,
+    backgroundColor: theme.border,
   },
   content: {
     padding: 12,
@@ -218,13 +219,13 @@ export const recipeCardStyles = StyleSheet.create({
   title: {
     fontSize: 15,
     fontWeight: "700",
-    color: COLORS.text,
+    color: theme.text,
     marginBottom: 4,
     lineHeight: 20,
   },
   description: {
     fontSize: 12,
-    color: COLORS.textLight,
+    color: theme.textLight,
     marginBottom: 8,
     lineHeight: 16,
   },
@@ -239,7 +240,7 @@ export const recipeCardStyles = StyleSheet.create({
   },
   timeText: {
     fontSize: 11,
-    color: COLORS.textLight,
+    color: theme.textLight,
     marginLeft: 4,
     fontWeight: "500",
   },
@@ -249,7 +250,7 @@ export const recipeCardStyles = StyleSheet.create({
   },
   servingsText: {
     fontSize: 11,
-    color: COLORS.textLight,
+    color: theme.textLight,
     marginLeft: 4,
     fontWeight: "500",
   },
